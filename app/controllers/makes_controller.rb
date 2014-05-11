@@ -5,7 +5,7 @@ class MakesController < ApplicationController
   end
 
   def show
-
+    @make = Make.find(params[:id])
   end
 
   def new
@@ -23,9 +23,12 @@ class MakesController < ApplicationController
   end
 
   def edit
+    @make = Make.find(params[:id])
   end
 
   def update
+    @make = Make.find(params[:id])
+    
     if @make.update_attributes(make_params)
       flash[:success] = "Make updated"
       redirect_to @make
