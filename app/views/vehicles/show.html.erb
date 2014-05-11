@@ -23,6 +23,21 @@
 <div>
 <!-- insert the mileage form here -->
 
+<%= form_for @mileage do |f| %>
+  <%= f.label :miles %>
+  <%= f.text_field :miles %>
+
+  <%= f.label :gallons %>
+  <%= f.text_field :gallons %>
+
+  <%= f.label :filled_tank_on %>
+  <%= f.date_select :filled_tank_on %>
+
+  <%= f.submit "Submit New Mileage", class: "btn btn-large btn-primary" %>
+<% end %>
+
+
+
 </div>
 <div style="clear:both;">
 <h1>Mileages</h1>
@@ -34,9 +49,21 @@
     <td>Gallons</td>
   </tr>
 <!-- display the mileages here. You do not need to use a partial -->
+
+<% if @mileages.any? %>
+
+<% @mileages.each do |mileage| %>
+  <tr>
+    <td><%= mileage.filled_tank_on %></td>
+
+    <td><%= mileage.miles %></td>
+  
+    <td><%= mileage.gallons %></td>
+  </tr>
+<% end %>
+
+<% end %>
 </table>
 
 <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
 <%= link_to 'List', vehicles_path %>
-
-

@@ -16,6 +16,7 @@ class VehiclesController < ApplicationController
   def show
     @vehicle = Vehicle.find(params[:id])
     @mileages = Mileage.where(:vehicle_id => params[:id])
+    @mileage  = @vehicle.mileages.build
 
     respond_to do |format|
       format.html # show.html.erb
