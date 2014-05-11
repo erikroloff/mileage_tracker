@@ -10,13 +10,14 @@ class ModelsController < ApplicationController
 
   def new
     @model = Model.new
+    @makes = Make.all
   end
 
   def create
     @model = Model.new(model_params)
     if @model.save
       flash[:success] = "Made new Model!"
-      redirect_to @model
+      redirect_to new_model_path
     else
       render 'new'
     end
@@ -24,6 +25,7 @@ class ModelsController < ApplicationController
 
   def edit
     @model = Model.find(params[:id])
+    @makes = Make.all
   end
 
   def update
@@ -31,7 +33,7 @@ class ModelsController < ApplicationController
 
     if @model.update_attributes(model_params)
       flash[:success] = "Model updated"
-      redirect_to @model
+      redirect_to new_model_path
     else
       render 'edit'
     end
@@ -39,6 +41,6 @@ class ModelsController < ApplicationController
 
   private
     def model_params
-      params.require(:model).permit(:name)
+      params.require(:model).permit(:id, :make_id, :name)
     end
 end

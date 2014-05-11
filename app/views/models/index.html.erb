@@ -8,9 +8,14 @@
 <!-- display the list of models here
      you do not need to use a partial -->
 
+     <% @models.each do |model| %>
+       <tr>
+         <td><%= model.name %></td>
+       </tr>
+     <% end %>
+
 </table>
 
 <br />
 
-<% # create a link the "new" model page %>
-
+<%= link_to "Add Model", new_model_path %>
